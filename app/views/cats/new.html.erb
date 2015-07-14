@@ -1,0 +1,41 @@
+<html>
+<body>
+  <h2>Enter New Cat Details</h2>
+  <form action='<%= cats_url %>' method='post'>
+
+    <label for='cat_name'>Name:</label>
+    <input type='text' name='cat[name]' id='cat_name'>
+    <br><br>
+
+    <label for='cat_sex'>Sex:</label>
+    <input type='radio' name='cat[sex]' id='cat_sex_male' value='M'>
+    <label for='cat_sex_male'>M</label>
+    <input type='radio' name='cat[sex]' id='cat_sex_female' value='F'>
+    <label for='cat_sex_female'>F</label>
+    <br><br>
+
+    <label for='cat_color'>Color:</label>
+    <select name='cat[color]' id='cat_color'>
+      <option></option>
+      <option value='brown'>Brown</option>
+      <option value='black'>Black</option>
+      <option value='grey'>Grey</option>
+      <option value='white'>White</option>
+      <option value='red'>Red</option>
+      <option value='orange'>Orange</option>
+    </select>
+    <br><br>
+
+    <label for='cat_birth_date'>Birthdate:</label>
+    <input type='date' name='cat[birth_date]' id='cat_birth_date'>
+    <br><br>
+
+    <label for='cat_description'>Describe your fond memories:</label><br>
+    <textarea name='cat[description]' id='cat_description'></textarea>
+
+    <br><br>
+    <input type='submit' value='Create a new cat'>
+  </form>
+
+</body>
+</html>
