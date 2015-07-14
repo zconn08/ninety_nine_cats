@@ -7,6 +7,14 @@ class Cat < ActiveRecord::Base
     Time.now.strftime("%Y").to_i - birth_date.strftime("%Y").to_i
   end
 
+  def male?
+    sex == 'M'
+  end
+
+  def female?
+    sex == 'F'
+  end
+
   private
   def correct_sex
     unless ["M", "F"].include?(sex)
