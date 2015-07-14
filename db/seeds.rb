@@ -6,8 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-10.times do
-  Cat.create!(name: Faker::Name.first_name,
+names = []
+
+
+99.times do
+  random_name = [Faker::Name.first_name, Faker::Name.last_name].sample
+  while names.include?(random_name)
+    random_name = [Faker::Name.first_name, Faker::Name.last_name].sample
+  end
+  names << random_name
+
+  Cat.create!(name: random_name,
               description: Faker::Lorem.sentence,
               sex: ['M', 'F'].sample,
               color: ["black", "brown", "white", "red", "grey", "orange"].sample,
