@@ -17,17 +17,31 @@ names = []
   names << random_name
 
   Cat.create!(name: random_name,
-              description: Faker::Lorem.sentence,
+              description: Faker::Hacker.say_something_smart,
               sex: ['M', 'F'].sample,
               color: ["black", "brown", "white", "red", "grey", "orange"].sample,
               birth_date: Faker::Time.backward(10000)
               )
 end
 
-# t.string   "name",        null: false
-# t.text     "description", null: false
-# t.string   "sex",         null: false
-# t.string   "color",       null: false
-# t.datetime "birth_date",  null: false
-# t.datetime "created_at",  null: false
-# t.datetime "updated_at",  null: false
+CatRentalRequest.create!(
+  cat_id: 1,
+  status: 'APPROVED',
+  start_date: 7.days.ago,
+  end_date: 7.days.from_now
+)
+
+CatRentalRequest.create!(
+  cat_id: 1,
+  status: 'APPROVED',
+  start_date: 2.weeks.ago,
+  end_date: 10.days.ago
+)
+
+
+
+# create_table "cat_rental_requests", force: :cascade do |t|
+#   t.integer  "cat_id",                         null: false
+#   t.string   "status",     default: "PENDING", null: false
+#   t.date     "start_date",                     null: false
+#   t.date     "end_date"

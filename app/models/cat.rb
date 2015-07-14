@@ -3,6 +3,14 @@ class Cat < ActiveRecord::Base
   validates :name, uniqueness: true
   validate :correct_sex, :correct_color
 
+  has_many(
+    :rental_requests,
+    class_name: "CatRentalRequest",
+    foreign_key: :cat_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
   def age
     Time.now.strftime("%Y").to_i - birth_date.strftime("%Y").to_i
   end
