@@ -8,7 +8,7 @@
 
 10.times do
   Cat.create!(name: Faker::Name.first_name,
-              description: Faker::Lorem.words(5),
+              description: Faker::Lorem.sentence,
               sex: ['M', 'F'].sample,
               color: ["black", "brown", "white", "red", "grey", "orange"].sample,
               birth_date: Faker::Time.backward(10000)
