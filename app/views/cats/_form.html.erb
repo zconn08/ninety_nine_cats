@@ -47,9 +47,7 @@
   <br><br>
 
   <label for='cat_description'>Describe your fond memories:</label><br>
-  <textarea name='cat[description]' id='cat_description'>
-    <%= @cat.description %>
-  </textarea>
+  <textarea name='cat[description]' id='cat_description'><%= @cat.description %></textarea>
 
   <br><br>
   <% if @cat.persisted? %>
