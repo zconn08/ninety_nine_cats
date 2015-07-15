@@ -30,5 +30,18 @@
       <td><%= @cat.description %></td>
     </tr>
   </table>
+
+  <h3>Rentals for <%= @cat.name %></h3>
+  <ul>
+    <% @cat.rental_requests.order({ start_date: :asc }).each do |rental| %>
+      <li>
+        ID: <%= rental.id %>,
+        from <%= rental.start_date %>
+        to <%= rental.end_date %>
+        (<%= rental.status %>)
+      </li>
+    <% end %>
+  </ul>
+
 </body>
 </html>

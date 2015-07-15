@@ -2,7 +2,7 @@
     <form action='<%= cat_url(@cat.id) %>' method='post'>
     <input type="hidden" name="_method" value="PATCH">
   <% else %>
-    <form action= '<%= cats_url %>' method='post'>
+    <form action='<%= cats_url %>' method='post'>
   <% end %>
 
   <label for='cat_name'>Name:</label>

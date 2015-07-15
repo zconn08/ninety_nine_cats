@@ -33,8 +33,4 @@ class CatRentalRequest < ActiveRecord::Base
   def overlapping_approved_requests
     overlapping_requests.select { |request| request.status == 'APPROVED' }
   end
-
-  private
-  def cat_rental_request_params
-  end
 end
