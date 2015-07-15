@@ -39,7 +39,20 @@
         from <%= rental.start_date %>
         to <%= rental.end_date %>
         (<%= rental.status %>)
+
+        <% if rental.status == 'PENDING' %>
+        <%= button_to "Approve",
+            approve_cat_rental_request_url(rental.id),
+            class: 'button',
+            method: 'post' %>
+            
+        <%= button_to "Deny",
+            deny_cat_rental_request_url(rental.id),
+            class: 'button',
+            method: 'post' %>
+        <% end %>
       </li>
+      <br>
     <% end %>
   </ul>
 

@@ -3,14 +3,25 @@ class CatRentalRequest < ActiveRecord::Base
   validates :status, presence: true,
             inclusion: { in: ['PENDING', 'APPROVED', 'DENIED'] }
   validate :no_conflicting_approvals
-  after_initialize do
-    self.status ||= 'PENDING'
-  end
+  after_initialize { self.status ||= 'PENDING' }
 
   belongs_to :cat
 
+  def approve!
+    CatRentalRequest.transaction do
+      self.status = 'APPROVED'
+      self.save!
+      overlapping_pending_requests.each { |req| req.deny! }
+    end
+  end
+
+  def deny!
+    self.status = 'DENIED'
+    self.save!
+  end
+
   def no_conflicting_approvals
-    unless overlapping_approved_requests.empty?
+    if self.status == "APPROVED" && !overlapping_approved_requests.empty?
       all_conflicts = overlapping_approved_requests.map do |request|
         "ID: #{request.id}, Start: #{request.start_date}, End: #{request.end_date}"
       end.join("\n")
@@ -32,5 +43,9 @@ class CatRentalRequest < ActiveRecord::Base
 
   def overlapping_approved_requests
     overlapping_requests.select { |request| request.status == 'APPROVED' }
+  end
+
+  def overlapping_pending_requests
+    overlapping_requests.select { |request| request.status == 'PENDING' }
   end
 end
