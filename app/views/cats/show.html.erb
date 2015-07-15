@@ -1,7 +1,4 @@
 <html>
-<title>
-  <!-- NinetyNineCats | <%= @cat.name %> -->
-</title>
 <body>
   <h2>About <%= @cat.name %></h2>
   <table>
@@ -45,7 +42,7 @@
             approve_cat_rental_request_url(rental.id),
             class: 'button',
             method: 'post' %>
-            
+
         <%= button_to "Deny",
             deny_cat_rental_request_url(rental.id),
             class: 'button',
@@ -55,6 +52,13 @@
       <br>
     <% end %>
   </ul>
+
+  <%= link_to '< Back', root_url %> | <%= link_to 'Edit', edit_cat_url(@cat.id) %>
+
+  <form action='<%= cat_url(@cat.id) %>' method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <%= button_to 'Delete (no backsies!)', cat_url(@cat.id), class: 'button', method: 'post' %>
+  </form>
 
 </body>
 </html>

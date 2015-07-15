@@ -1,6 +1,9 @@
 <html>
   <body>
     <h1>All Cats</h1>
+    <h4><%= link_to "Create a new cat", new_cat_url %> |
+        <%= link_to "Create a new rental request", new_cat_rental_request_url %> </h4>
+
     <ul>
       <% @cats.each do |cat| %>
         <li>
